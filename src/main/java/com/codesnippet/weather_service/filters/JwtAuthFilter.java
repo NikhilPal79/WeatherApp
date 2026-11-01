@@ -1,6 +1,5 @@
 package com.codesnippet.weather_service.filters;
 
-import com.codesnippet.weather_service.service.CustomUserDetailsService;
 import com.codesnippet.weather_service.util.JWTUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

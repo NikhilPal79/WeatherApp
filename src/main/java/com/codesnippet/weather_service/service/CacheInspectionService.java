@@ -9,7 +9,6 @@ import java.util.Objects;
 
 @Service
 public class CacheInspectionService {
-
     @Autowired
     private CacheManager cacheManager;
 
@@ -22,4 +21,5 @@ public class CacheInspectionService {
             System.out.println("No such cache: " + cacheName);
         }
     }
+
 }

@@ -12,9 +12,7 @@ public class Weather {
     @Id
     @GeneratedValue
     private Long id;
-
     private String city;
-
     private String forecast;
 
     public Weather() {
