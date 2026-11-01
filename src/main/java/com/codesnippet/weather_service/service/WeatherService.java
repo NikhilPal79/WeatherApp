@@ -19,24 +19,11 @@ public class WeatherService {
         this.weatherRepository = weatherRepository;
     }
 
-    @Cacheable(value = "weather", key = "#city")
+    @Cacheable("weather")
     public String getWeatherByCity(String city) {
         System.out.println("Fetching data from DB for city: " + city);
         Optional<Weather> weather = weatherRepository.findByCity(city);
         return weather.map(Weather::getForecast).orElse("Weather data not available");
     }
-    @CachePut(value = "weather",key = "#city")
-    public String updateWeather(String city, String updatedWeather) {
-        weatherRepository.findByCity(city).ifPresent(weather -> {
-            weather.setForecast(updatedWeather);
-            weatherRepository.save(weather);
-        });
-        return updatedWeather;
-    }
-    @Transactional
-    @CacheEvict(value = "weather",key = "#city")
-    public void deleteWeather(String city) {
-        System.out.println("Removing weather data for city: " + city);
-        weatherRepository.deleteByCity(city);
-    }
+
 }

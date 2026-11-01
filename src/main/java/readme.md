@@ -1,0 +1,22 @@
+spring:
+application:
+name: weather-service
+datasource:
+url: jdbc:h2:mem:appdb
+driver-class-name: org.h2.Driver
+username: sa
+password:
+h2:
+console:
+enabled: true
+cache:
+type: redis
+cache-names: weather
+data:
+redis:
+host: localhost
+port: 6379
+server:
+port: 8085
+
+
