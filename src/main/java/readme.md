@@ -20,3 +20,8 @@ server:
 port: 8085
 
 
+# 4 commands to use in memory cache 
+1. @EnableCache
+2. @Cacheable
+3. @Cacheput
+4. @Cachevict 
