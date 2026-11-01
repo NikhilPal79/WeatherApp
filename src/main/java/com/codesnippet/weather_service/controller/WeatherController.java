@@ -3,6 +3,7 @@ package com.codesnippet.weather_service.controller;
 
 import com.codesnippet.weather_service.entity.Weather;
 import com.codesnippet.weather_service.repository.WeatherRepository;
+import com.codesnippet.weather_service.service.CacheInspectionService;
 import com.codesnippet.weather_service.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,9 @@ public class WeatherController {
     @Autowired
     private WeatherRepository weatherRepository;
 
+    @Autowired
+    private CacheInspectionService cacheInspectionService;
+
     @GetMapping
     public String getWeather(@RequestParam String city){
         return weatherService.getWeatherByCity(city);
@@ -31,6 +35,23 @@ public class WeatherController {
     @GetMapping("/all")
     public List<Weather> getAllWeather(){
         return weatherRepository.findAll();
+    }
+
+    @GetMapping("/cacheData")
+    public void getCacheData(){
+        cacheInspectionService.printCacheContents("weather");
+    }
+
+    @PutMapping("/{city}")
+    public String updateWeather(@PathVariable String city,@RequestParam String weatherUpdate){
+        return weatherService.updateWeather(city, weatherUpdate);
+    }
+
+    @DeleteMapping("/{city}")
+    public String deleteWeather(@PathVariable String city){
+        weatherService.deleteWeather(city);
+        return "Weather data for " + city + " has been deleted and cache evicted. ";
+
     }
 
 }
